@@ -1,0 +1,127 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+
+//[Serializable]
+public class SaveAndLoadScript : MonoBehaviour
+{
+    public List<GameObject> cubes;
+
+
+    void Start()
+    {
+        Load();
+    }
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1)) Save();
+        if(Input.GetKeyDown(KeyCode.Alpha2)) Load();
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            cubes[0].GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        Save();
+    }
+    
+    void Save()
+    {
+        if(cubes.Count < 1) return;
+        Debug.Log("Saving");
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.OpenOrCreate);
+        SaveData saveData = new SaveData ();
+        
+        saveData.cubepositionsX = new float[cubes.Count];
+        saveData.cubepositionsY = new float[cubes.Count];
+        saveData.cubepositionsZ = new float[cubes.Count];
+        
+        saveData.cuberotationsW = new float[cubes.Count];
+        saveData.cuberotationsX = new float[cubes.Count];
+        saveData.cuberotationsY = new float[cubes.Count];
+        saveData.cuberotationsZ = new float[cubes.Count];
+        
+        saveData.cubecolorsR = new float[cubes.Count];
+        saveData.cubecolorsG = new float[cubes.Count];
+        saveData.cubecolorsB = new float[cubes.Count];
+        
+        for (int i = 0; i < cubes.Count; i++)
+        {
+            saveData.cubepositionsX[i] = cubes[i].transform.position.x;
+            saveData.cubepositionsY[i] = cubes[i].transform.position.y;
+            saveData.cubepositionsZ[i] = cubes[i].transform.position.z;
+            Debug.Log(saveData.cubepositionsX[i] + " " + saveData.cubepositionsY[i] + " " + saveData.cubepositionsZ[i]);
+            
+            saveData.cuberotationsW[i] = cubes[i].transform.rotation.w;
+            saveData.cuberotationsX[i] = cubes[i].transform.rotation.x;
+            saveData.cuberotationsY[i] = cubes[i].transform.rotation.y;
+            saveData.cuberotationsZ[i] = cubes[i].transform.rotation.z;
+            
+            MeshRenderer cubematerial = cubes[i].GetComponentInChildren<MeshRenderer>();
+            
+            saveData.cubecolorsR[i] = cubematerial.material.color.r;
+            saveData.cubecolorsG[i] = cubematerial.material.color.g;
+            saveData.cubecolorsB[i] = cubematerial.material.color.b;
+
+        }
+        bf.Serialize(file, saveData);
+        file.Close();
+    }
+    
+    void Load()
+    {
+        Debug.Log("Loading");
+        if (File.Exists(Application.persistentDataPath + "/save.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.Open);
+            SaveData saveData = bf.Deserialize(file) as SaveData;
+            file.Close();
+
+            if (saveData.cubepositionsX.Length != cubes.Count)
+            {
+                Save();
+                return;
+            } 
+            
+            for (int i = 0; i < cubes.Count; i++)
+            {
+                Vector3 cubeposition = new Vector3( saveData.cubepositionsX[i], saveData.cubepositionsY[i], saveData.cubepositionsZ[i]);
+                Debug.Log(cubeposition);
+                cubes[i].transform.position = cubeposition;
+                
+                Quaternion cuberotation = new Quaternion( saveData.cuberotationsX[i], saveData.cuberotationsY[i], saveData.cuberotationsZ[i], saveData.cuberotationsW[i]);
+                cubes[i].transform.rotation = cuberotation;
+                
+                Color cubecolor = new Color(saveData.cubecolorsR[i], saveData.cubecolorsG[i], saveData.cubecolorsB[i]);
+                cubes[i].GetComponentInChildren<MeshRenderer>().material.color = cubecolor;
+
+            }
+        }
+        
+    }
+}
+
+[System.Serializable]
+public class SaveData
+{
+    public float[] cubepositionsX;
+    public float[] cubepositionsY;
+    public float[] cubepositionsZ;
+    
+    public float[] cuberotationsW;
+    public float[] cuberotationsX;
+    public float[] cuberotationsY;
+    public float[] cuberotationsZ;
+    
+    public float[] cubecolorsR;
+    public float[] cubecolorsG;
+    public float[] cubecolorsB;
+    
+}
