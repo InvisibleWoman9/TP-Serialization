@@ -5,6 +5,8 @@ using UnityEngine;
 public class CharacterControllerScript : MonoBehaviour
 {
     public CharacterController controller;
+    Transform cubetouche;
+    public Collider zonededetection;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -31,10 +33,52 @@ public class CharacterControllerScript : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);     
 
         //controller.Move(move * speed * Time.deltaTime);
+        
+        //Si le joueur appuie sur la touche espace, le cube detecter par son box collider sera soulevé au même niveau que la zonededetection 
+        if (Input.GetButtonDown("Jump") &&  cubetouche != null)
+        {
+            cubetouche.GetComponent<Rigidbody>().isKinematic = true;
+            cubetouche.parent = this.transform;
+            cubetouche.position = zonededetection.transform.position; 
+        }
 
+        //Si le joueur relache la touche espace, le cube dans les "bras" du personnage sera relaché
+        if (Input.GetButtonUp("Jump") &&  cubetouche != null)
+        {
+            cubetouche.parent = null;
+            cubetouche.GetComponent<Rigidbody>().isKinematic = false;
+        }
+
+    }//FIN UPDATE
+    
+    
+    
+    //Si l'objet touche par le box collider du perso à le Tag correspondant à l'action voulu, alors il est mis en mémoire
+    void OnTriggerEnter(Collider objettouche)
+    {
+        
+        if(objettouche.gameObject.CompareTag("MOVETHIS") && cubetouche == null)
+        {
+            
+            cubetouche = objettouche.transform;
+
+        }
+
+         
+        
     }
+
     
-    
+    void OnTriggerExit(Collider objetrelache)
+    {
+        if(objetrelache.transform == cubetouche)
+        {
+            cubetouche = null;
+
+        }
+
+       
+    }
     
     
     

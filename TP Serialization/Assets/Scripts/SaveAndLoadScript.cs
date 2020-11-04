@@ -8,11 +8,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 //[Serializable]
 public class SaveAndLoadScript : MonoBehaviour
 {
-    public List<GameObject> cubes;
+    public GameObject[] cubes;
 
 
     void Start()
     {
+        cubes = GameObject.FindGameObjectsWithTag("MOVETHIS");
         Load();
     }
     void Update()
@@ -32,26 +33,26 @@ public class SaveAndLoadScript : MonoBehaviour
     
     void Save()
     {
-        if(cubes.Count < 1) return;
+        if(cubes.Length < 1) return;
         Debug.Log("Saving");
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.OpenOrCreate);
         SaveData saveData = new SaveData ();
         
-        saveData.cubepositionsX = new float[cubes.Count];
-        saveData.cubepositionsY = new float[cubes.Count];
-        saveData.cubepositionsZ = new float[cubes.Count];
+        saveData.cubepositionsX = new float[cubes.Length];
+        saveData.cubepositionsY = new float[cubes.Length];
+        saveData.cubepositionsZ = new float[cubes.Length];
         
-        saveData.cuberotationsW = new float[cubes.Count];
-        saveData.cuberotationsX = new float[cubes.Count];
-        saveData.cuberotationsY = new float[cubes.Count];
-        saveData.cuberotationsZ = new float[cubes.Count];
+        saveData.cuberotationsW = new float[cubes.Length];
+        saveData.cuberotationsX = new float[cubes.Length];
+        saveData.cuberotationsY = new float[cubes.Length];
+        saveData.cuberotationsZ = new float[cubes.Length];
         
-        saveData.cubecolorsR = new float[cubes.Count];
-        saveData.cubecolorsG = new float[cubes.Count];
-        saveData.cubecolorsB = new float[cubes.Count];
+        saveData.cubecolorsR = new float[cubes.Length];
+        saveData.cubecolorsG = new float[cubes.Length];
+        saveData.cubecolorsB = new float[cubes.Length];
         
-        for (int i = 0; i < cubes.Count; i++)
+        for (int i = 0; i < cubes.Length; i++)
         {
             saveData.cubepositionsX[i] = cubes[i].transform.position.x;
             saveData.cubepositionsY[i] = cubes[i].transform.position.y;
@@ -84,13 +85,13 @@ public class SaveAndLoadScript : MonoBehaviour
             SaveData saveData = bf.Deserialize(file) as SaveData;
             file.Close();
 
-            if (saveData.cubepositionsX.Length != cubes.Count)
+            if (saveData.cubepositionsX.Length != cubes.Length)
             {
                 Save();
                 return;
             } 
             
-            for (int i = 0; i < cubes.Count; i++)
+            for (int i = 0; i < cubes.Length; i++)
             {
                 Vector3 cubeposition = new Vector3( saveData.cubepositionsX[i], saveData.cubepositionsY[i], saveData.cubepositionsZ[i]);
                 Debug.Log(cubeposition);

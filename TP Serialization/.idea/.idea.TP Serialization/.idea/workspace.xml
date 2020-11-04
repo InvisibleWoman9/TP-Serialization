@@ -34,6 +34,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/CubeScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CharacterControllerScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SaveAndLoadScript.cs" />
       </list>
@@ -42,6 +43,7 @@
   <component name="ProjectId" id="1jn2QWYqozguBRYxXbnYVEXJXaA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -80,7 +82,9 @@
       <option name="presentableId" value="Default" />
       <updated>1604425522632</updated>
       <workItem from="1604425525293" duration="332000" />
-      <workItem from="1604425895260" duration="7198000" />
+      <workItem from="1604425895260" duration="7667000" />
+      <workItem from="1604484956290" duration="1390000" />
+      <workItem from="1604509563008" duration="3739000" />
     </task>
     <servers />
   </component>
