@@ -17,4 +17,5 @@ Le jeu sauvegarde automatiquement :
 - la position
 - la rotation
 - la couleur
+
 des cubes. Il recharge ces éléments lors de la prochaine ouverture du jeu. 
