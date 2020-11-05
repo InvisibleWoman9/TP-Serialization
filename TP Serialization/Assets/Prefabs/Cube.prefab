@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4354057356244817898}
   - component: {fileID: 4354057356244817899}
   - component: {fileID: 4354057356244817903}
-  - component: {fileID: 4354057356244817902}
   m_Layer: 0
   m_Name: Cube
   m_TagString: MOVETHIS
@@ -111,16 +110,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4354057356244817902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4354057356244817684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4479a70d0a159ec4ca096fc3b2a6df3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skin: {fileID: 0}
