@@ -5,8 +5,11 @@ Le jeu est une expérience interactive sans objectif particulier. Le joueur est 
 CONTROLS
 -------------
 Souris (mouvement) = Camera/Viser
-Clic gauche = Prendre 
+
+Clic gauche = Prendre
+
 Clic droit = Lancer
+
 R = Reset la scène
 
 CONTEXT
