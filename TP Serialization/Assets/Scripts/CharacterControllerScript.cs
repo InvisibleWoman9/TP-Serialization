@@ -8,6 +8,7 @@ public class CharacterControllerScript : MonoBehaviour
     public CharacterController controller;
     Transform cubetouche;
     public Transform camera;
+    public Transform epauleG, epauleD;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -59,6 +60,8 @@ public class CharacterControllerScript : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            epauleG.Rotate(Vector3.up, 10f);
+            epauleD.Rotate(Vector3.up, -10f);
             RaycastHit hit;
             if (Physics.Raycast(camera.position, camera.forward, out hit, 3f))
             {
@@ -71,9 +74,11 @@ public class CharacterControllerScript : MonoBehaviour
         }
 
         
-        if (Input.GetMouseButtonUp(0) &&  cubetouche != null)
+        if (Input.GetMouseButtonUp(0))
         {
-            Ramassercube(false, cubetouche);
+            epauleG.Rotate(Vector3.up, -10f);
+            epauleD.Rotate(Vector3.up, 10f);
+            if(cubetouche != null) Ramassercube(false, cubetouche);
         }
 
         if (Input.GetMouseButtonDown(1) && cubetouche != null)
