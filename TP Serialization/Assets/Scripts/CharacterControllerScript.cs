@@ -28,9 +28,6 @@ public class CharacterControllerScript : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
 
-
-
-
         velocity = (transform.right * x + transform.forward * z) * speed + transform.up * velocity.y;  
 
         velocity.y += gravity * Time.deltaTime;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7871171598880214511}
   - component: {fileID: 7871171598880214508}
   m_Layer: 0
-  m_Name: PARTICLES R
+  m_Name: PARTICLES J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4709,8 +4709,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 92d0a28912f15874c87094455827119a, type: 2}
-  - {fileID: 2100000, guid: 5f310188c0c889d41b2e34f484827d7a, type: 2}
+  - {fileID: 2100000, guid: 19458e6959bf764459f94a0e9fc46cd0, type: 2}
+  - {fileID: 2100000, guid: ce1f198438a061c42a761b1557f4df2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
