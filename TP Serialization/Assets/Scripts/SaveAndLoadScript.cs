@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 
 
 //[Serializable]
@@ -20,9 +21,11 @@ public class SaveAndLoadScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1)) Save();
         if(Input.GetKeyDown(KeyCode.Alpha2)) Load();
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            cubes[0].GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            if (File.Exists(Application.persistentDataPath + "/save.dat")) File.Delete(Application.persistentDataPath + "/save.dat");
+            SceneManager.LoadScene(0);
+            
         }
     }
 

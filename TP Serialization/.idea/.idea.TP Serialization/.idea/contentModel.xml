@@ -8,7 +8,6 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="CharacterControllerScript.cs" t="Include" />
-          <e p="CubeScript.cs" t="Include" />
           <e p="SaveAndLoadScript.cs" t="Include" />
           <e p="SphereScript.cs" t="Include" />
         </e>

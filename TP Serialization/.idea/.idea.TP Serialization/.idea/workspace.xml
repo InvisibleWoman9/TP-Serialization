@@ -36,8 +36,8 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/CubeScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SaveAndLoadScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CharacterControllerScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SphereScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CharacterControllerScript.cs" />
       </list>
     </option>
   </component>
@@ -85,7 +85,7 @@
       <workItem from="1604425525293" duration="332000" />
       <workItem from="1604425895260" duration="7667000" />
       <workItem from="1604484956290" duration="1390000" />
-      <workItem from="1604509563008" duration="12788000" />
+      <workItem from="1604509563008" duration="18436000" />
     </task>
     <servers />
   </component>

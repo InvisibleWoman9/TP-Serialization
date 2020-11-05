@@ -9,10 +9,12 @@ public class SphereScript : MonoBehaviour
     private List<Collider> objetstouches;
     Collider spherecol;
     private ParticleSystem mypParticles;
+    private AudioSource bubbles;
     
     
     void Start()
     {
+        bubbles = GetComponent<AudioSource>();
         myColor = GetComponent<MeshRenderer>().material.color;
         spherecol = GetComponent<SphereCollider>();
         objetstouches = new List<Collider>();
@@ -43,7 +45,15 @@ public class SphereScript : MonoBehaviour
             objetstouches.Add(col);
             mypParticles.transform.position = col.ClosestPointOnBounds(transform.position);
             mypParticles.Play();
+            bubbles.Play();
         }
+
+        if (col.transform.name == "CAPSULECOLLIDER")
+        {
+            col.GetComponentInParent<CharacterControllerScript>().ActivateMask(true, myColor);
+        }
+        
+        
     }
     
     private void OnTriggerExit(Collider col)
@@ -56,6 +66,14 @@ public class SphereScript : MonoBehaviour
                 mypParticles.Stop();
             }
         }
+        
+        if (col.transform.name == "CAPSULECOLLIDER")
+        {
+            col.GetComponentInParent<CharacterControllerScript>().ActivateMask(false, myColor);
+        }
+
+        if (objetstouches.Count < 1) bubbles.Pause();
+        
     }
     
     
